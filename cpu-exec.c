@@ -162,6 +162,10 @@ static inline tcg_target_ulong cpu_tb_exec(CPUState *cpu, uint8_t *tb_ptr)
         env->cc_op = CC_OP_FLAGS;
         env->sr = (env->sr & 0xffe0) | env->cc_dest | (env->cc_x << 4);
         log_cpu_state(cpu, 0);
+#elif defined(TARGET_ARM)
+        log_cpu_state(cpu, CPU_DUMP_FPU);
+#elif defined(TARGET_AARCH64)
+        log_cpu_state(cpu, CPU_DUMP_FPU);
 #else
         log_cpu_state(cpu, 0);
 #endif
